@@ -1,3 +1,5 @@
+package com.woo.api1.strings;
+
 import java.util.Scanner;
 
 public class StringEx2 {

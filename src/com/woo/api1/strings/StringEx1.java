@@ -1,4 +1,4 @@
-package com.woo.api1.objects;
+package com.woo.api1.strings;
 
 public class StringEx1 {
 
