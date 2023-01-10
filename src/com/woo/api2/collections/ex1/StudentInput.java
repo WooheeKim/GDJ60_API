@@ -10,10 +10,10 @@ public class StudentInput {
 	}
 	
 	// Search
-	public StudentDAO search(StudentDAO [] studentDAOs) {
+	public StudentDTO search(StudentDTO [] studentDAOs) {
 		System.out.println("학생정보검색 : ");
 		String name = sc.next().toUpperCase();
-		StudentDAO studentDAO = null;
+		StudentDTO studentDAO = null;
 		for(int i=0;i<studentDAOs.length;i++) {
 			if(name.equals(studentDAOs[i].getName().toUpperCase())) {
 				studentDAO = studentDAOs[i];
@@ -24,8 +24,8 @@ public class StudentInput {
 	}
 	
 	// Add
-	public StudentDAO [] add(StudentDAO [] studentDAOs) {
-		StudentDAO studentDAO = new StudentDAO();
+	public StudentDTO [] add(StudentDTO [] studentDAOs) {
+		StudentDTO studentDAO = new StudentDTO();
 		System.out.println("학생 이름 : ");
 		studentDAO.setName(sc.next());
 		System.out.println("학생 번호 : ");
@@ -38,7 +38,7 @@ public class StudentInput {
 		studentDAO.setMath(sc.nextInt());
 		System.out.println("총합 점수 : ");
 		studentDAO.setTotal(sc.nextInt());
-		StudentDAO [] newInfo = new StudentDAO[studentDAOs.length+1];
+		StudentDTO [] newInfo = new StudentDTO[studentDAOs.length+1];
 		
 		for(int i=0;i<studentDAOs.length;i++) {
 			newInfo[i] = studentDAOs[i];
@@ -50,8 +50,8 @@ public class StudentInput {
 	}
 	
 	// Remove
-	public StudentDAO [] remove(StudentDAO [] studentDAOs) {
-		StudentDAO [] newInfo = new StudentDAO[studentDAOs.length-1];
+	public StudentDTO [] remove(StudentDTO [] studentDAOs) {
+		StudentDTO [] newInfo = new StudentDTO[studentDAOs.length-1];
 		System.out.println("학생정보삭제");
 		String name = sc.next().toUpperCase();
 		int idx=0;

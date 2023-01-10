@@ -2,13 +2,13 @@ package com.woo.api2.collections.ex1;
 
 public class StudentView {
 	
-	public void view(StudentDAO [] datas) {
+	public void view(StudentDTO [] datas) {
 		for(int i=0; i<datas.length;i++) {
 			this.view(datas[i]);
 		}
 	}
 	
-	public void view(StudentDAO studentDAO) {
+	public void view(StudentDTO studentDAO) {
 		System.out.println("----------------");
 		System.out.println("학생 이름 : "+studentDAO.getName());
 		System.out.println("학생 번호 : "+studentDAO.getNum());

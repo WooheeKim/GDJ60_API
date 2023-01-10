@@ -1,6 +1,6 @@
 package com.woo.api2.collections.ex1;
 
-public class StudentDAO {
+public class StudentDTO {
 	
 	private String name;
 	private int num;

@@ -7,11 +7,11 @@ public class StudentController {
 	private Scanner sc;
 	private StudentView studentView;
 	private StudentInput studentInput;
-	private StudentDAO studentDAOs;
+	private StudentDTO studentDAOs;
 	
 	public StudentController() {
 		this.sc = new Scanner(System.in);
-		this.studentDAO = new StudentDAO();
+		this.studentDAO = new StudentDTO();
 		studentView = new StudentView();
 		
 	}
