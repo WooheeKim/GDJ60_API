@@ -1,5 +1,7 @@
 package com.woo.api2.collections.ex1;
 
+import java.util.ArrayList;
+
 public class Ex1Main {
 
 	public static void main(String[] args) {
@@ -11,12 +13,26 @@ public class Ex1Main {
 		// 5. 학생정보삭제(이름으로 검색)
 		// 6. 프로그램 종료
 		
-		System.out.println("Start");
+		StudentDAO dao = new StudentDAO();
+		ArrayList<StudentDTO> ar = dao.init();
 		
-		new StudentController().start();
+		dao.addStudent(ar);
 		
-		System.out.println("Finish");
-			
+		for(int i=0;i<ar.size();i++) {
+			System.out.println(ar.get(i).getName());
+		}
+		
+		// 향상된 for
+//		for(StudentDTO studentDTO:ar) {
+//			
+//		}
+//		int [] nums = new int [3];
+//		
+//		for(int n:nums) {
+//			
+//		}
+		
+//		new StudentController().start();
 	}
 
 }
