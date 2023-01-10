@@ -1,16 +1,21 @@
 package com.woo.api2.collections.ex1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentController {
 
 	private Scanner sc;
+	// 의존성
+	private StudentDAO studentDAO;
 	private StudentView studentView;
-	private StudentDAO [] studentDAOs;
+	private ArrayList<StudentDTO> ar;
+	
 	
 	public StudentController() {
 		this.sc = new Scanner(System.in);
-		studentView = new StudentView();
+		studentDAO = new StudentDAO(); // 주입
+		studentView = new StudentView(); // 의존성주입(DI)
 	}
 	
 	public void start() {
@@ -22,24 +27,34 @@ public class StudentController {
 			System.out.println("3. 학생정보검색조회");
 			System.out.println("4. 학생정보추가");
 			System.out.println("5. 학생정보삭제");
-			System.out.println("6. 종	료");
+			System.out.println("6. 프로그램 종료");
 			int select = sc.nextInt();
 			
 			switch(select) {
 			case 1:
-				
+				ar = studentDAO.init();
 				break;
 			case 2:
-				
+				studentView.view(ar);
 				break;
 			case 3:
-				
+				StudentDTO studentDTO = studentDAO.findByName(ar);
+				if(studentDTO != null) {
+					studentView.view(studentDTO);
+				} else {
+					studentView.view("찾는 학생이 없습니다.");
+				}
 				break;
 			case 4:
-				
+				studentDAO.addStudent(ar);
 				break;
 			case 5:
-				
+				select = studentDAO.removeStudent(ar);
+				if(select==1) {
+					studentView.view("삭제 성공");
+				} else {
+					studentView.view("삭제 실패");
+				}
 				break;
 			default:
 				check =! check;

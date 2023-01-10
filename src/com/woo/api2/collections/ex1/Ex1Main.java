@@ -13,14 +13,14 @@ public class Ex1Main {
 		// 5. 학생정보삭제(이름으로 검색)
 		// 6. 프로그램 종료
 		
-		StudentDAO dao = new StudentDAO();
-		ArrayList<StudentDTO> ar = dao.init();
-		
-		dao.addStudent(ar);
-		
-		for(int i=0;i<ar.size();i++) {
-			System.out.println(ar.get(i).getName());
-		}
+//		StudentDAO dao = new StudentDAO();
+//		ArrayList<StudentDTO> ar = dao.init();
+//		
+//		dao.addStudent(ar);
+//		
+//		for(int i=0;i<ar.size();i++) {
+//			System.out.println(ar.get(i).getName());
+//		}
 		
 		// 향상된 for
 //		for(StudentDTO studentDTO:ar) {
@@ -32,7 +32,7 @@ public class Ex1Main {
 //			
 //		}
 		
-//		new StudentController().start();
+		new StudentController().start();
 	}
 
 }
