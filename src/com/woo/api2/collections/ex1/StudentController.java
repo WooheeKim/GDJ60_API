@@ -6,7 +6,8 @@ public class StudentController {
 	
 	private Scanner sc;
 	private StudentView studentView;
-	private StudentDAO studentDAO;
+	private StudentInput studentInput;
+	private StudentDAO studentDAOs;
 	
 	public StudentController() {
 		this.sc = new Scanner(System.in);

@@ -2,17 +2,52 @@ package com.woo.api2.collections.ex1;
 
 public class StudentDAO {
 	
-	private StringBuffer sb;
+	private String name;
+	private int num;
+	private int kor;
+	private int eng;
+	private int math;
+	private int total;
 	
-	public StudentDAO() {
-		this.sb = new StringBuffer();
-		
-		sb.append("iu-1-90-60-70-");
-		sb.append("winter-2-86-84-75-");
-		sb.append("suji, 3, 89, 74, 87 ");
-		sb.append("choa, 4, 71, 25, 99 ");
-		
+	public String getName() {
+		return name;
 	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public int getKor() {
+		return kor;
+	}
+	public void setKor(int kor) {
+		this.kor = kor;
+	}
+	public int getEng() {
+		return eng;
+	}
+	public void setEng(int eng) {
+		this.eng = eng;
+	}
+	public int getMath() {
+		return math;
+	}
+	public void setMath(int math) {
+		this.math = math;
+	}
+	public int getTotal() {
+		total = kor+eng+math;
+		return total;
+	}
+	public void setTotal(int total) {
+		total = kor+eng+math;
+		this.total = total;
+	}
+	
 	
 	
 	
