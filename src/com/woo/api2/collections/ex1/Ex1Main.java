@@ -1,5 +1,8 @@
 package com.woo.api2.collections.ex1;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Ex1Main {
@@ -11,7 +14,8 @@ public class Ex1Main {
 		// 3. 학생정보검색조회(이름으로 검색)
 		// 4. 학생정보추가
 		// 5. 학생정보삭제(이름으로 검색)
-		// 6. 프로그램 종료
+		// 6. 학생정보백업
+		// 7. 프로그램 종료
 		
 //		StudentDAO dao = new StudentDAO();
 //		ArrayList<StudentDTO> ar = dao.init();
@@ -32,7 +36,18 @@ public class Ex1Main {
 //			
 //		}
 		
-		new StudentController().start();
+		File file = new File("C:\\fileTest", "a.txt");
+		
+		try {
+			FileWriter fw = new FileWriter(file);
+			fw.write("test\r\n");
+			fw.flush();
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+//		new StudentController().start();
 	}
 
 }

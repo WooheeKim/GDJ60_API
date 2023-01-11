@@ -1,5 +1,8 @@
 package com.woo.api2.collections.ex1;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -19,6 +22,35 @@ public class StudentDAO {
 		sb.append("suji, 3, 89, 74, 87 ");
 		sb.append("choa, 4, 71, 25, 99 ");
 	}
+	
+	// 학생정보백업
+	// 현재시간을 파일명으로 해서 파일작성
+	public void backupStudent(ArrayList<StudentDTO> ar) {
+		File file = new File("C:\\fileTest", "student.txt");
+		System.out.println(file.exists());
+		
+		
+		try {
+			FileWriter fw = new FileWriter(file);
+			fw.write();
+			fw.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+//		this.sb = new StringBuffer();
+//		
+//		StringBuffer name = sb;
+//		try (FileWriter fw = new FileWriter(file)) {
+//			fw.write(name+"\r\n");
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+	}
+	
 	
 	// 학생정보삭제
 	public int removeStudent(ArrayList<StudentDTO> ar) {
