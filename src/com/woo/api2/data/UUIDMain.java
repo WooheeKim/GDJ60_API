@@ -1,5 +1,7 @@
 package com.woo.api2.data;
 
+import java.util.Calendar;
+import java.util.Random;
 import java.util.UUID;
 
 public class UUIDMain {
@@ -8,6 +10,11 @@ public class UUIDMain {
 		
 		String name = UUID.randomUUID().toString();
 		System.out.println(name);
+		
+		Calendar calendar = Calendar.getInstance();
+		name = calendar.getTimeInMillis()+"abc";
+		
+		Random random = new Random(calendar.getTimeInMillis());
 		
 	}
 
