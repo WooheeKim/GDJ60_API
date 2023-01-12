@@ -10,56 +10,55 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Client1 {
+public class Server2 {
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		Socket sc = null;
+		// 클라이언트 접속 대기
+		// 1. 점심메뉴중 하나를 랜덤하게 골라서 전송
+		// 2. 저녁메뉴중 하나를 랜덤하게 골라서 전송
+		// 3. 종료
 		
-		OutputStream os = null;
-		OutputStreamWriter ow = null;
-		BufferedWriter bw = null;
+		Scanner scanner = new Scanner(System.in);
+		ServerSocket ss = null;
+		Socket sc = null;
 		
 		InputStream is = null;
 		InputStreamReader ir = null;
 		BufferedReader br = null;
 		
+		OutputStream os = null;
+		OutputStreamWriter ow = null;
+		BufferedWriter bw = null;
+		
 		try {
-			// 객체 생성시 서버 접속 시도
-			sc = new Socket("127.0.0.1", 8282);  // 127.0.0.1 (자기 자신 IP주소) or localhost
-			System.out.println("Server 접속 성공"); // 192.168.1.125
-			
+			ss = new ServerSocket(8282);
+			System.out.println("Client 접속을 기다리는 중..");
+			sc = ss.accept();
+			System.out.println("Client와 연결 성공 !");
 			while(true) {
-				// 0,1
-				os = sc.getOutputStream();
-				// char
-				ow = new OutputStreamWriter(os);
-				// Stream
-				bw = new BufferedWriter(ow);
-				
-				System.out.println("서버로 보낼 메세지 입력 : ");
-				String msg = scanner.next();
-				
-				bw.write(msg+"\r\n");
-				bw.flush();
-				
-				if(msg.equals("q") ||  msg.equals("Q")) {
-					break;
-				}
-				
 				is = sc.getInputStream();
 				ir = new InputStreamReader(is);
 				br = new BufferedReader(ir);
 				
-			    msg = br.readLine();
-				System.out.println("Server : "+msg);
+				String msg = br.readLine();
+				System.out.println("Client : "+msg);
 				
-				if(msg.equals("q".toUpperCase()) || msg.equals("q".toLowerCase())) {
-					break;
-				}
+				
+				
+				
+				System.out.println("클라이언트로 보낼 메세지 입력 : ");
+				msg = scanner.nextLine();
+				
+				os = sc.getOutputStream();
+				ow = new OutputStreamWriter(os);
+				bw = new BufferedWriter(ow);
+				
+				bw.write(msg+"\r\n");
+				bw.flush();
+				
+				
 				
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -71,9 +70,12 @@ public class Client1 {
 				ow.close();
 				os.close();
 				sc.close();
-			} catch(Exception e){
-				
+				ss.close();
+			} catch (Exception e) {
+
 			}
 		}
+
 	}
+
 }
