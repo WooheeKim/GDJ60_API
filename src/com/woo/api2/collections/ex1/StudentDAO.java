@@ -154,9 +154,22 @@ public class StudentDAO {
 	// 학생정보초기화
 	public ArrayList<StudentDTO> init() {
 //		String data = this.sb.toString();
+		File file = new File("C:\\fileTest");
+		
+		String [] names = file.list();
+		long max = 0;
+		for(String name:names) {
+			name = name.substring(0, name.lastIndexOf("."));
+			long date = Long.parseLong(name);
+			
+			if(date > max) {
+				max = date;
+			}
+			
+		}
 		
 		// 1. 파일정보 File 
-		File file = new File("C:\\fileTest", "student.txt");
+		file = new File(file, max+".txt");
 		
 		// 2. 파일내용 읽기 위해서 연결 준비
 		FileReader fr = null;
@@ -164,14 +177,14 @@ public class StudentDAO {
 		ArrayList<StudentDTO> ar = new ArrayList<>();
 		
 		try {
-			fr = new FileReader(file);
-			br = new BufferedReader(fr);
-			String data = null;
-			while((data=br.readLine()) != null) {
-				data = data.replace(" ", "-");
-				data = data.replace(",", "");
-				StringTokenizer st = new StringTokenizer(data, "-");
-				while(st.hasMoreTokens()) {
+				fr = new FileReader(file);
+				br = new BufferedReader(fr);
+				String data = null;
+				while((data=br.readLine()) != null) {
+					data = data.replace(" ", "-");
+					data = data.replace(",", "");
+					StringTokenizer st = new StringTokenizer(data, "-");
+					
 					StudentDTO studentDTO = new StudentDTO();
 					studentDTO.setName(st.nextToken());
 					studentDTO.setNum(Integer.parseInt(st.nextToken()));
@@ -180,30 +193,18 @@ public class StudentDAO {
 					studentDTO.setMath(Integer.parseInt(st.nextToken()));
 					studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath());
 					studentDTO.setAvg(studentDTO.getTotal()/3.0);
-					ar.add(studentDTO);	
-				}				
+					ar.add(studentDTO);									
 			}			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			try {
-				br.close();
-				fr.close();
-			} catch (Exception e) {
-				e.printStackTrace();
+		} finally {
+				try {
+					br.close();
+					fr.close();
+				} catch (Exception e) {
+				
 			}
 		}
-		
-		
-		
-		
-		
-
-		
-		
-		
-		
-		
 		
 		return ar;
 	}
