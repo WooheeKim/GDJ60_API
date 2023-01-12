@@ -25,17 +25,42 @@ public class StudentDAO {
 	
 	// 학생정보백업
 	// 현재시간을 파일명으로 해서 파일작성
-	public void backupStudent(ArrayList<StudentDTO> ar) {
+	public void studentBackup(ArrayList<StudentDTO> ar) {
 		File file = new File("C:\\fileTest", "student.txt");
+		
+		FileWriter fw = null;
+		
 		System.out.println(file.exists());
 		
 		
 		try {
-			FileWriter fw = new FileWriter(file);
-			fw.write();
-			fw.flush();
+			fw= new FileWriter(file);
+			
+			for(StudentDTO studentDTO : ar) {
+				StringBuffer sb = new StringBuffer();
+				sb.append(studentDTO.getName());
+				sb.append("-");
+				sb.append(studentDTO.getNum());
+				sb.append("-");
+				sb.append(studentDTO.getKor());
+				sb.append("-");
+				sb.append(studentDTO.getEng());
+				sb.append("-");
+				sb.append(studentDTO.getMath());
+				sb.append("\n");
+				
+				fw.write(sb.toString());
+				fw.flush();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				fw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		
