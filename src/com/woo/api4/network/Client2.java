@@ -33,8 +33,9 @@ public class Client2 {
 		try {
 			sc = new Socket("localhost", 8282);
 			System.out.println("Server 접속 성공");
+			boolean check = true;
 			
-			while(true) {
+			while(check) {
 				
 				os = sc.getOutputStream();
 				
@@ -42,31 +43,27 @@ public class Client2 {
 				
 				bw = new BufferedWriter(ow);
 				
-				System.out.println("서버로 보낼 메세지 입력");
+				System.out.println("1.점심	2.저녁	3.종료");
+				System.out.println("서버로 보낼 메세지 입력 : ");
+				
 				String msg = scanner.next();
 				
 				bw.write(msg+"\r\n");
 				bw.flush();
+
 				
-				int num;
-				switch(num) {
-				case 1:
+				switch(msg) {
+				case "1":
 					System.out.println("점심을 고르셨습니다.");
 					break;
-				case 2:
+				case "2":
 					System.out.println("저녁을 고르셨습니다.");
 					break;
 				default:
 					System.out.println("시스템을 종료합니다.");
+					check = false;
+					break;
 				}
-				
-				
-				int num = 0;
-				if(num==1) {
-					System.out.println(num);
-					
-				}
-				
 				
 				
 				is = sc.getInputStream();
@@ -76,9 +73,10 @@ public class Client2 {
 				msg = br.readLine();
 				System.out.println("Server : "+msg);
 				
-				
-				
-				
+				if(msg.equals(3)) {
+					System.out.println("시스템을 종료합니다.");
+					break;
+				}
 			}
 			
 		} catch (Exception e) {

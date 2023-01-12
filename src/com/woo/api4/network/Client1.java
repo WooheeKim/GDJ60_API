@@ -27,7 +27,7 @@ public class Client1 {
 		try {
 			// 객체 생성시 서버 접속 시도
 			sc = new Socket("127.0.0.1", 8282);  // 127.0.0.1 (자기 자신 IP주소) or localhost
-			System.out.println("Server 접속 성공"); // 192.168.1.125
+			System.out.println("Server 접속 성공"); // 192.168.1.125 영도형
 			
 			while(true) {
 				// 0,1
