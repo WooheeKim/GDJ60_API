@@ -36,18 +36,18 @@ public class Ex1Main {
 //			
 //		}
 		
-		File file = new File("C:\\fileTest", "a.txt");
+//		File file = new File("C:\\fileTest", "a.txt");
+//		
+//		try {
+//			FileWriter fw = new FileWriter(file);
+//			fw.write("test\r\n");
+//			fw.flush();
+//		} catch (IOException e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}
 		
-		try {
-			FileWriter fw = new FileWriter(file);
-			fw.write("test\r\n");
-			fw.flush();
-		} catch (IOException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		
-//		new StudentController().start();
+		new StudentController().start();
 	}
 
 }

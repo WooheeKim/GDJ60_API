@@ -59,6 +59,7 @@ public class StudentController {
 				break;
 			case 6:
 				studentDAO.studentBackup(ar);
+				break;
 			default:
 				check =! check;
 					
