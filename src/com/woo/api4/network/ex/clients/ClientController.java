@@ -29,6 +29,9 @@ public class ClientController {
 			int select = scanner.nextInt();
 			
 			switch(select) {
+			case 0:
+				ar = clientDAO.init();
+				break;
 			case 1:				
 				clientView.view(ar);
 				break;
@@ -56,10 +59,7 @@ public class ClientController {
 	
 			}
 			
-			
-			
-			
-			
+
 			
 		}
 	}
