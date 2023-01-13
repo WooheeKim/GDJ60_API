@@ -32,6 +32,9 @@ public class Server2 {
 		OutputStreamWriter ow = null;
 		BufferedWriter bw = null;
 		
+		String [] lunch = {"라면", "햄버거", "짜장면", "짬뽕", "굶기"};
+		String [] dinner = {"삼겹살", "치킨", "피자", "족발", "쫄면"};
+		
 		try {
 			ss = new ServerSocket(8282);
 			System.out.println("Client 접속을 기다리는 중..");
@@ -45,27 +48,34 @@ public class Server2 {
 			String msg = br.readLine();
 //			System.out.println("Client : "+msg);
 			
-			Calendar ca = Calendar.getInstance();
-			Random random = new Random(ca.getTimeInMillis());
-			// 1. 점심 메뉴
-			if(msg.equals("1")){
-			String [] lunch = {"라면", "햄버거", "짜장면", "짬뽕", "굶기"};
-			int idx = random.nextInt(100)%5;
 			
-			String menu = lunch[idx];
 			
-			System.out.println(menu);
-			// 2. 저녁 메뉴
-			} else if(msg=="2") {
-				String [] dinner = {"삼겹살", "치킨", "피자", "족발", "쫄면"};
-				int idx = random.nextInt(100)%5;
+			
+			boolean check = true;
+			
+			while(check) {
+				Calendar ca = Calendar.getInstance();
+				Random random = new Random(ca.getTimeInMillis());
 				
-				String menu = dinner[idx];
-				
-				System.out.println(menu);
-			} else {
-				System.out.println("시스템을 종료합니다.");
+				int select = 1;
+				String menu = null;
+				switch (select) {
+				case 1:
+					select = random.nextInt(100)%5;
+					menu = lunch[select];
+					break;
+				case 2:
+					select = random.nextInt(100)%5;
+					menu = dinner[select];
+					break;
+				default:
+					System.out.println("서버 프로그램을 종료합니다.");
+					check =! check;
+				}
+			
 			}
+			
+			
 			
 			
 			
