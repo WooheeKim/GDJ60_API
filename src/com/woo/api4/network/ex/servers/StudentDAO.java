@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 public class StudentDAO {
 	// List의 내용들을 하나의 String으로 만들어 주는 메서드
-	public String makeList(ArrayList<StudentDTO> ar ) {
+	public String makeList(ArrayList<StudentDTO> ar) {
 		String result="";
 		StringBuffer sb = new StringBuffer();
 		for(StudentDTO studentDTO: ar) {
@@ -30,8 +30,9 @@ public class StudentDAO {
 		return result;
 	}
 	
-	public void init() throws Exception {
+	public ArrayList<StudentDTO> init() throws Exception {
 		ArrayList<StudentDTO> ar = new ArrayList<>();
+		
 		File file = new File("C:\\fileTest", "1673487805112.txt");
 		
 		FileReader fr = new FileReader(file);
@@ -51,11 +52,11 @@ public class StudentDAO {
 			studentDTO.setMath(Integer.parseInt(st.nextToken()));
 			studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath());
 			studentDTO.setAvg(studentDTO.getTotal()/3.0);
-			st.nextToken();
 			
 			ar.add(studentDTO);
 			
 		}
+		
 		return ar;	
 	}
 	

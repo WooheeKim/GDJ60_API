@@ -18,10 +18,13 @@ public class StudentController {
 	public void start() throws Exception {
 		
 		ss = new ServerSocket(8282);
-		studentDAO = new StudentDAO();
+		
 		socket = ss.accept();
+		studentDAO = new StudentDAO();
+		
 		
 		ArrayList<StudentDTO> ar = studentDAO.init();
+		
 		InputStream is = null;
 		InputStreamReader ir = null;
 		BufferedReader br = null;
@@ -29,7 +32,6 @@ public class StudentController {
 		OutputStream os = null;
 		OutputStreamWriter ow = null;
 		BufferedWriter bw = null;
-		
 		
 		is = socket.getInputStream();
 		ir = new InputStreamReader(is);
@@ -39,40 +41,39 @@ public class StudentController {
 		ow = new OutputStreamWriter(os);
 		bw = new BufferedWriter(ow);
 		boolean check = true;
-		
 		while(check) {
-		String select =  br.readLine();
-		String [] s = select.split(":");
-		
-		switch(s[0]) {
-		case "1":
-			// 1:
-			select = studentDAO.makeList(ar);
-			break;
+			String select =  br.readLine();
+			String [] s = select.split(":");
 			
-		case "2":
-			//2:iu
-			select = studentDAO.findByname(ar, s[1]);
-			break;
+			switch(s[0]) {
+			case "1":
+				// 1:
+				select = studentDAO.makeList(ar);
+				break;
+				
+			case "2":
+				//2:iu
+				select = studentDAO.findByname(ar, s[1]);
+				break;
+				
+			case "3":
+				//3:iu-4-50-75-81
+				//[s1]
+				select = studentDAO.addStudent(ar, s[1]);
+				break;
+			case "4":
+				select = studentDAO.remove(ar, s[1]);
+				break;
+				
+			default:
+				check =! check;
+			}
 			
-		case "3":
-			//3:iu-4-50-75-81
-			//[s1]
-			select = studentDAO.addStudent(ar, s[1]);
-			break;
-		case "4":
-			select = studentDAO.remove(ar, s[1]);
+			if(check) {
+				bw.write(select+"\r\n");
+				bw.flush();
+			}
 			
-			break;
-		default:
-			check =! check;
-		}
-		
-		if(check) {
-			bw.write(select+"\r\n");
-			bw.flush();
-		}
-		
 		}
 	}
 }

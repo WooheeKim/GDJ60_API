@@ -13,7 +13,7 @@ public class ClientMain {
 	public static void main(String[] args) throws Exception {
 		
 		Socket socket = new Socket("localhost", 8282);
-		
+		System.out.println("Socket");
 		InputStream is = null;
 		InputStreamReader ir = null;
 		BufferedReader br = null;
@@ -30,8 +30,9 @@ public class ClientMain {
 		os = socket.getOutputStream();
 		ow = new OutputStreamWriter(os);
 		bw = new BufferedWriter(ow);
-		// 번호?data
-		bw.write("1\r\n");
+		
+		// 번호:data
+		bw.write("1:\r\n");
 		bw.flush();
 		
 		// 응답
