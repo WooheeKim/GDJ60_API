@@ -32,6 +32,7 @@ public class Server2 {
 		OutputStreamWriter ow = null;
 		BufferedWriter bw = null;
 		
+		boolean check = true;
 		String [] lunch = {"라면", "햄버거", "짜장면", "짬뽕", "굶기"};
 		String [] dinner = {"삼겹살", "치킨", "피자", "족발", "쫄면"};
 		
@@ -45,19 +46,19 @@ public class Server2 {
 			ir = new InputStreamReader(is);
 			br = new BufferedReader(ir);
 			
-			String msg = br.readLine();
-//			System.out.println("Client : "+msg);
-			
-			
-			
-			
-			boolean check = true;
+			os = sc.getOutputStream();
+			ow = new OutputStreamWriter(os);
+			bw = new BufferedWriter(ow);
 			
 			while(check) {
+				String data = br.readLine();
+				
+				int select = Integer.parseInt(data);
+			
+			
 				Calendar ca = Calendar.getInstance();
 				Random random = new Random(ca.getTimeInMillis());
 				
-				int select = 1;
 				String menu = null;
 				switch (select) {
 				case 1:
@@ -70,31 +71,16 @@ public class Server2 {
 					break;
 				default:
 					System.out.println("서버 프로그램을 종료합니다.");
-					check =! check;
+					check =! check; // check = false;
+				}
+				
+				if(check) {
+					bw.write(menu+"\r\n");
+					bw.flush();
 				}
 			
 			}
 			
-			
-			
-			
-			
-			
-			System.out.println("클라이언트로 보낼 메세지 입력 : ");
-			msg = scanner.nextLine();
-			
-			os = sc.getOutputStream();
-			ow = new OutputStreamWriter(os);
-			bw = new BufferedWriter(ow);
-			
-			bw.write(msg+"\r\n");
-			bw.flush();
-			
-			if(msg.equals(3)) {
-				
-				
-				
-			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
